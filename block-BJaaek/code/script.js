@@ -1,20 +1,30 @@
-colors = ["red","orange","blue","apricot","amber","yello","perple"]
+function generateRandomColor(){
+    let hexCharacters = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+
+    let color = "#";
+
+    for(let i = 0; i < 6; i++){
+        let randomNumber = Math.floor(Math.random() * 16);
+        color = color + hexCharacters[randomNumber];
+    }
+    return color;
+}
 
 let box1 = document.querySelector(".first");
 let box2 = document.querySelector(".second");
 
-box1.addEventListener("click", function(){
-    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+function handleClick(){
+    let randomColor = generateRandomColor();
 
-    let container = document.querySelector(`.first`);
+    box1.style.backgroundColor = randomColor;
+}
 
-    container.style.background = randomColor;
-});
+box1.addEventListener("click",handleClick)
 
-box2.addEventListener("mousemove", function(){
-    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+function handleHover(){
+    let randomColor = generateRandomColor();
 
-    let container = document.querySelector(`.second`);
+    box2.style.backgroundColor = randomColor;
+}
 
-    container.style.background = randomColor;
-})
+box2.addEventListener("mousemove", handleHover)
