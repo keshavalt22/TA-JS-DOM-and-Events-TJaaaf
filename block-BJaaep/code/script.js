@@ -1,18 +1,27 @@
-let randomNumber = function getRandomNumber(){
-    return Math.floor(Math.random() * 12);
-}
+let firstBoxes = document.querySelectorAll(".first li");
 
-let root = document.querySelector("boxes");
+let secondBox = document.querySelector(".second");
+
+firstBoxes.forEach((box,index) => {
+    box.addEventListener("click", (event) => {  
+        event.target.innerText = index + 1;
+
+        setTimeout(() => {
+            event.target.innerText = "";
+        },5000);
+
+    });
+});
 
 
-randomNumber.forEach((number) =>{
-    let li = document.createElement("li");
-    li.classList.add("box");
-    
-    li.addEventListener("click", function(event){
-        handleClick(randomNumber);
-    })
+secondBox.addEventListener("click",(event) =>{
 
-    li.innerText = randomNumber;
-    root.append(li);
+    let text = event.target.dataset.text;
+    event.target.innerText = text;
+
+    setTimeout(() => {
+        event.target.innerText = "";
+    },5000);
 })
+
+
