@@ -1,34 +1,54 @@
-let userName = document.querySelector("#name");
-let userEmail = document.querySelector("#email");
-let userPreference = document.querySelector("#gender");
-let userColor = document.querySelector("#color");
-let userRating = document.querySelector("#range");
-
-
+let form = document.querySelector("form");
+let modal = document.querySelector(".modal_overlay");
+let modalInfo = document.querySelector(".modal_Info");
 let userInfo = {};
 
-function handleKeyName(event){
-    userInfo.Name = event.target.value;
-} 
 
-function handleKeyEmail(event){
-    userInfo.Email = event.target.value;
-} 
 
-function handleSelect(event){
-    userInfo.Preference = event.target.value;
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let elements = event.target.elements;
+
+    userInfo.name = elements.text.value;
+    userInfo.email = elements.email.value;
+    userInfo.choice = elements.gender.value;
+    userInfo.color = elements.color.value;
+    userInfo.movie = elements.movie.value;
+    userInfo.book = elements.book.value;
+    userInfo.terms = elements.terms.checked
+
+
+    modal.classList.add("open");
+
+    let close = document.querySelector("modal_close");
+    close.addEventListener("click",() =>{
+        modal.classList.remove("open");
+    });
+    
+    displayInfo(userData);
+});
+
+function displayInfo(data = {}) {
+    let h1 = document.createElement("h1");
+    h1.innerText = `Hello${data.name}`;
+    let email = document.createElement("p");
+    email.innerText = `Email: ${data.emial}`;
+    let choice = document.createElement("p");
+    choice.innerText = `watching Choice ${data.choice}`;
+    let color = document.createElement("p");
+    color.innerText = `color: ${data.color}`;
+    let movie = document.createElement("p");
+    movie.innerText = `Rating for movie: ${data.movie}`;
+    let book = document.createElement("p");
+    book.innerText = `Hello${data.book}`;
+    let terms = document.createElement("p");
+    terms.innerText = `${data.terms
+    ?"You have accepted the terms and condition"
+    :"You have not accepted the terms and condition"    
+}`;
+modalInfo.append(h1,email,choice,color,movie,book,terms);    
+
+
+    modalInfo.append(h1);
 }
-
-function handleKeyColor(event){
-    userInfo.Color = event.target.value;
-}
-
-function handleKeyRating(event){
-    console.log(event.target)
-}
-
-userName.addEventListener("input", handleKeyName);
-userEmail.addEventListener("input", handleKeyEmail);
-userPreference.addEventListener("input", handleSelect);
-userColor.addEventListener("input", handleKeyColor);
-userRating.addEventListener("input", handleKeyRating);
