@@ -16,39 +16,38 @@ form.addEventListener("submit", (event) => {
     userInfo.color = elements.color.value;
     userInfo.movie = elements.movie.value;
     userInfo.book = elements.book.value;
-    userInfo.terms = elements.terms.checked
-
+    userInfo.terms = elements.terms.checked;
 
     modal.classList.add("open");
 
-    let close = document.querySelector("modal_close");
-    close.addEventListener("click",() =>{
+
+    let close = document.querySelector(".modal_close");
+
+    close.addEventListener("click", () => {
         modal.classList.remove("open");
     });
-    
-    displayInfo(userData);
+
+    displayInfo(userInfo);
 });
 
 function displayInfo(data = {}) {
+    modalInfo.innerHTML = "";
     let h1 = document.createElement("h1");
-    h1.innerText = `Hello${data.name}`;
+    h1.innerText = `Hello ${data.name}`;
     let email = document.createElement("p");
-    email.innerText = `Email: ${data.emial}`;
+    email.innerText = `Email: ${data.email}`;
     let choice = document.createElement("p");
-    choice.innerText = `watching Choice ${data.choice}`;
+    choice.innerText = `watching Choice: ${data.choice}`;
     let color = document.createElement("p");
     color.innerText = `color: ${data.color}`;
     let movie = document.createElement("p");
     movie.innerText = `Rating for movie: ${data.movie}`;
     let book = document.createElement("p");
-    book.innerText = `Hello${data.book}`;
+    book.innerText = `${data.book}`;
     let terms = document.createElement("p");
     terms.innerText = `${data.terms
     ?"You have accepted the terms and condition"
     :"You have not accepted the terms and condition"    
 }`;
-modalInfo.append(h1,email,choice,color,movie,book,terms);    
-
-
-    modalInfo.append(h1);
+modalInfo.append(h1,email,choice,color,movie,book,terms); 
 }
