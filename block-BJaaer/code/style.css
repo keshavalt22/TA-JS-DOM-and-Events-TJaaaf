@@ -47,7 +47,7 @@ body {
   box-sizing: border-box;
 }
 
-button {
+.submit {
   padding: 0.5rem;
 }
 
@@ -76,6 +76,8 @@ select {
   gap: 1rem;
 }
 
+
+
 p {
   padding-top: 1rem;
 }
@@ -93,4 +95,21 @@ input[type='text'] {
 }
 .relative{
   position: relative;
+}
+
+.close{
+  position: absolute;
+  display: block;
+  height: 400px;
+  top: 0;
+  left: 36%;
+  z-index: -1;
+}
+.open{
+  position: absolute;
+  display: block;
+  height: 400px;
+  top: 0;
+  left: 36%;
+  z-index: 1;
 }
