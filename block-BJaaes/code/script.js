@@ -1,5 +1,7 @@
 let form = document.querySelector("form");
 
+let userInfo = {};
+
 let usernameError = "";
 
 let nameError = "";
