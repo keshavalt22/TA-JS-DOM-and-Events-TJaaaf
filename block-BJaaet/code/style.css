@@ -68,3 +68,20 @@ input{
     margin: 20px;
     padding: 12px 32px;
 }
+
+label {
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 0px;
+}
+
+ul input {
+    width: auto;
+}
+
+ul span {
+    font-size: 20px;
+    color: red;
+    font-weight: 700;
+    margin-left: 32px;
+}
