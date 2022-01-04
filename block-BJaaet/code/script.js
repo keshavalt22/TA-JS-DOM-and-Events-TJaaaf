@@ -1,16 +1,7 @@
 let input = document.querySelector(`input[type="text"]`); 
 let rootElm = document.querySelector(".movie_list");
 
-let allMovies = [
-    {
-        name: "Troy",
-        watched: false,
-    },
-    {
-        name: "Lake House",
-        watched: false,
-    }
-]
+let allMovies = [];
 
 input.addEventListener("keyup", (event) => {
     if(event.keyCode === 13){
