@@ -54,7 +54,7 @@ h1{
 }
 .form-box{
     margin: 0 auto;
-    width: 40%;
+    width: 100%;
     background-color: aqua;
     padding: 60px;
 }
@@ -79,4 +79,16 @@ ul span {
     color: red;
     font-weight: 700;
     margin-left: 32px;
+}
+
+button {
+    padding: 8px;
+    font-size: 14px;
+    background: black;
+    color: white;
+}
+.selected {
+    background: white;
+    border: 1px solid black;
+    color: black;
 }
