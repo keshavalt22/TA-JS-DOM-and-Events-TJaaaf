@@ -2,7 +2,14 @@ function main() {
     let input = document.querySelector(`input[type="text"]`); 
     let rootElm = document.querySelector(".todo_list");
     
-    let allTodo = JSON.parse(localStorage.getItem("todos")) || [];
+    let all = document.querySelector(".all");
+    let active = document.querySelector(".active");
+    let completed = document.querySelector(".completed");
+    let clear = document.querySelector(".clear");
+
+    let activeBtn = "all";
+
+    let allTodo = JSON.parse(localStorage.getItem("allTodo")) || [];
     
     function handleInput (event) {
         let value = event.target.value;
@@ -12,27 +19,27 @@ function main() {
                 isDone: false,
             });
             event.target.value = "";
-            createTodoUI(allTodo, rootElm);
+            createTodoUI(allTodo);
+            localStorage.setItem("allTodo", JSON.stringify(allTodo))
         }
-        localStorage.setItem("todos", JSON.stringify(allTodo))
     };
     
     
     function deleteTodo (event) {
         let id = event.target.dataset.id;
         allTodo.splice(id, 1);
-        localStorage.setItem("todos", JSON.stringify(allTodo))
-        createTodoUI(allTodo, rootElm);
+        createTodoUI(allTodo);
+        localStorage.setItem("allTodo", JSON.stringify(allTodo))
     }
     
     function handleToggle(event){
         let id = event.target.id;
         allTodo[id].isDone = !allTodo[id].isDone;
-        localStorage.setItem("todos", JSON.stringify(allTodo))
-        createTodoUI(allTodo, rootElm);
+        createTodoUI(allTodo);
+        localStorage.setItem("allTodo", JSON.stringify(allTodo))
     }
     
-    function createTodoUI(data, rootElm){
+    function createTodoUI(data = allTodo){
         rootElm.innerHTML = "";
         data.forEach((todo, i) =>{
             let li = document.createElement("li");
@@ -54,7 +61,59 @@ function main() {
         })
     }
     
-    createTodoUI(allTodo, rootElm);
+    createTodoUI(allTodo);
+
+    clear.addEventListener("click", () => {
+        allTodo = allTodo.filter((todo) => !todo.isDone);
+        createTodoUI();
+        activeBtn = "clear";
+        updatedActiveBtn();
+        localStorage.setItem("allTodo", JSON.stringify(allTodo))
+    });
+
+    active.addEventListener("click", () => {
+        let notCompleted = allTodo.filter((todo) => !todo.isDone);
+        createTodoUI(notCompleted);
+        activeBtn = "active";
+        updatedActiveBtn();
+    }); 
+
+    completed.addEventListener("click", () => {
+        let completedTodos = allTodo.filter((todo) => todo.isDone);
+        createTodoUI(completedTodos);
+        activeBtn = "completed";
+        updatedActiveBtn();
+    })
+    all.addEventListener("click", () => {
+        createTodoUI();
+        activeBtn = "all";
+        updatedActiveBtn();
+    })
+
+    
+
+    function updatedActiveBtn(btn = activeBtn) {
+        all.classList.remove("selected");
+        active.classList.remove("selected");
+        completed.classList.remove("selected");
+        clear.classList.remove("selected");
+
+        if(btn === "all"){
+            all.classList.add("selected")
+        }
+        if(btn === "active"){
+            active.classList.add("selected")
+        }
+        if(btn === "completed"){
+            completed.classList.add("selected")
+        }
+        if(btn === "clear"){
+            clear.classList.add("selected")
+        }
+    }
+
+    updatedActiveBtn();
+
     input.addEventListener("keyup",handleInput);
     }
     main();
