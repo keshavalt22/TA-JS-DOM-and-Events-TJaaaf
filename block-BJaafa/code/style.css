@@ -1,0 +1,10 @@
+body {
+    background-color: #b907f0;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    max-height: 700px;
+    text-align: center;
+}
+h1 {
+    margin-top: 200px;
+}
